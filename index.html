@@ -1,13 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nice Town You Got There!</title>
+
+    <link rel="stylesheet" href="style.css" />
     <script defer src="index.js"></script>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <header class="container" id="top-container">
+      <h1>Nice Town You Got There!</h1>
+      <h2>An Expat's Best Friend</h2>
+      <div></div>
+      <form id="city-search-form">
+        <label for="city-search">Find a City:</label>
+        <input id="city-search" />
+        <input type="submit"/>
+      </form>
+      <br/>
+      <label for="dropdown">Select Priority</label>
+      <select id="dropdown">
+        <option></option>
+        <option>Housing</option>
+        <option>Cost of Living</option>
+        <option>Startups</option>
+        <option>Venture Capital</option>
+        <option>Travel Connectivity</option>
+        <option>Commute</option>
+        <option>Business Freedom</option>
+        <option>Safety</option>
+        <option>Healthcare</option>
+        <option>Education</option>
+        <option>Environmental Quality</option>
+        <option>Economy</option>
+        <option>Taxation</option>
+        <option>Internet Access</option>
+        <option>Leisure & Culture</option>
+        <option>Tolerance</option>
+        <option>Outdoors</option>
+      </select>
+    </header>
+    <div class="container" id="main-container">
+      <div id="cities-container">
+        <div id="city-card">
+            <h3 id="city-name"></h3>
+            <span id="city-score"></span>
+            <img id="city-img" src="http://placehold.it/">
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
