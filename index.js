@@ -11,13 +11,32 @@ const randomizerButton = document.querySelector('#randomize')
 let tokenAdded = false
 let cityLink = ''
 
+// REFACTORING IDEAS
+// Function to fetch x3 and bundle data into city object
+
+// Function to render a city, called by:
+  // Render city on pageload
+  // Render city from search submit
+  // Render city from token click
+
+// Function to create token from currently displayed city
+
 searchForm.addEventListener('submit', (e) => {
   e.preventDefault()
+  
+  const oldSaveButton = document.querySelector('#save-button')
+  oldSaveButton.remove()
 
   citiesContainer.innerHTML = ''
   const cityCard = document.createElement('div')
 
   const cityName = document.createElement('h3')
+  const saveButton = document.createElement('button')
+  saveButton.id = 'save-button'
+  saveButton.innerText = 'Save City'
+  if (!document.getElementById('save-button')) {
+    topContainer.appendChild(saveButton)
+  }
   const cityScore = document.createElement('span')
   const cumulativeMeter = document.createElement('meter')
 
@@ -48,6 +67,7 @@ searchForm.addEventListener('submit', (e) => {
     .then((r) => r.json())
     .then((data) => {
       cityName.textContent = data.name
+      cityLink = `https://api.teleport.org/api/urban_areas/slug:${searchString}/`
     })
 
   fetch(`https://api.teleport.org/api/urban_areas/slug:${searchString}/scores`)
@@ -98,6 +118,119 @@ searchForm.addEventListener('submit', (e) => {
   cityImageContainer.addEventListener('mouseleave', () => {
     cityImage.style.opacity = '1'
     cityDescription.style.visibility = 'hidden'
+  })
+
+  saveButton.addEventListener('click', () => {
+    if (!tokenAdded) {
+      saveButton.remove()
+      cityTray.style.height = '150px'
+      const cityToken = document.createElement('div')
+      cityToken.className = 'city-token'
+      cityToken.id = cityLink
+      const tokenOverlay = document.createElement('div')
+      tokenOverlay.id = 'token-overlay'
+      tokenOverlay.textContent = cityName.textContent
+      cityToken.appendChild(tokenOverlay)
+      cityToken.style.backgroundImage = `url(${cityImage.src})`
+      cityTray.append(cityToken)
+
+      cityToken.addEventListener('click', () => {
+        // if (cityTray.childElementCount <= 1) {
+        //   cityTray.style.height = '0px'
+        // }
+
+        // cityToken.remove()
+        console.log(tokenAdded)
+
+        citiesContainer.innerHTML = ''
+        const cityCard = document.createElement('div')
+        cityCard.id = 'city-card'
+
+        const cityName = document.createElement('h3')
+        cityName.id = cityName
+        const saveButton = document.createElement('button')
+        saveButton.id = 'save-button'
+        saveButton.innerText = 'Save City'
+        if (!document.getElementById('save-button')) {
+          topContainer.appendChild(saveButton)
+        }
+
+        const cityScore = document.createElement('span')
+        const cumulativeMeter = document.createElement('meter')
+
+        const cityImageContainer = document.createElement('div')
+        const cityImage = document.createElement('img')
+        const cityDescription = document.createElement('span')
+        cityImageContainer.id = 'city-image-container'
+        cityImage.id = 'city-image'
+        cityImageContainer.append(cityDescription, cityImage)
+
+        const scoreList = document.createElement('ul')
+
+        cityCard.append(
+          cityName,
+          cityScore,
+          cumulativeMeter,
+          cityImageContainer,
+          scoreList
+        )
+
+        citiesContainer.append(cityCard)
+
+        fetch(`${cityToken.id}`)
+          .then((r) => r.json())
+          .then((tokenCity) => {
+            cityName.textContent = tokenCity.name
+
+            fetch(`${cityToken.id}scores`)
+              .then((r) => r.json())
+              .then((scoresData) => {
+                cityScore.textContent = Math.floor(
+                  scoresData.teleport_city_score
+                )
+                cumulativeMeter.id = cumulativeMeter
+                cumulativeMeter.min = 0
+                cumulativeMeter.max = 100
+                cumulativeMeter.low = 40
+                cumulativeMeter.high = 60
+                cumulativeMeter.optimum = 80
+                cumulativeMeter.value = Math.floor(
+                  scoresData.teleport_city_score
+                )
+                scoresData.categories.forEach((category) => {
+                  const li = document.createElement('li')
+                  li.textContent = `${category.name}: ${Math.floor(
+                    category.score_out_of_10
+                  )}`
+
+                  const categoryMeters = document.createElement('meter')
+                  categoryMeters.id = category.score_out_of_10
+                  categoryMeters.min = 0
+                  categoryMeters.max = 10
+                  categoryMeters.low = 4
+                  categoryMeters.high = 6
+                  categoryMeters.optimum = 8
+                  categoryMeters.value = `${Math.floor(
+                    category.score_out_of_10
+                  )}`
+
+                  scoreList.append(li, categoryMeters)
+
+                  cityDescription.innerHTML = scoresData.summary
+                  cityDescription.style.visibility = 'hidden'
+                })
+              })
+
+            fetch(`${cityToken.id}images`)
+              .then((r) => r.json())
+              .then((imgData) => {
+                cityImage.src = imgData.photos[0].image.web
+                cityDescription.style.position = 'absolute'
+              })
+          })
+      })
+    }
+    tokenAdded = true
   })
 
   searchForm.reset()
