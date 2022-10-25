@@ -8,6 +8,8 @@ const citiesContainer = document.querySelector('#cities-container')
 const cityTray = document.querySelector('#city-tray')
 const randomizerButton = document.querySelector('#randomize')
 
+const cityCatalogue = []
+
 let tokenAdded = false
 let cityLink = ''
 
@@ -20,6 +22,63 @@ let cityLink = ''
   // Render city from token click
 
 // Function to create token from currently displayed city
+fetchCities('https://api.teleport.org/api/urban_areas/')
+
+function fetchCities(endPoint) {
+
+  const cityLinks = []
+
+  fetch(endPoint)
+    .then((r) => r.json())
+    .then((data) => {
+      data["ua:item"].map(city => {
+      })
+    })
+  fetch(endPoint.scores)
+    .then((r) => r.json())
+    .then((data) => {
+      cityObj.scores = data
+    })
+  fetch(endPoint.images)
+    .then((r) => r.json())
+    .then((data) => {
+
+    })
+}
+
+function renderCity(cityObj) {
+  citiesContainer.innerHTML = ''
+  const cityCard = document.createElement('div')
+
+  const cityName = document.createElement('h3')
+  const saveButton = document.createElement('button')
+  saveButton.id = 'save-button'
+  saveButton.innerText = 'Save City'
+  if (!document.getElementById('save-button')) {
+    topContainer.appendChild(saveButton)
+  }
+  const cityScore = document.createElement('span')
+  const cumulativeMeter = document.createElement('meter')
+
+  const cityImageContainer = document.createElement('div')
+  const cityImage = document.createElement('img')
+  const cityDescription = document.createElement('span')
+  cityImageContainer.id = 'city-image-container'
+  cityImage.id = 'city-image'
+  cityImageContainer.append(cityDescription, cityImage)
+
+  const scoreList = document.createElement('ul')
+
+  cityCard.append(
+    cityName,
+    cityScore,
+    cumulativeMeter,
+    cityImageContainer,
+    scoreList
+  )
+
+  citiesContainer.append(cityCard)
+}
 
 searchForm.addEventListener('submit', (e) => {
   e.preventDefault()
