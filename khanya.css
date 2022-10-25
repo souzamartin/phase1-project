@@ -1,0 +1,55 @@
+#city-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    width: 100%;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+#city-image {
+    min-width: 0;
+    width: 100%;
+    height: 300px;
+}
+
+#city-tray {
+    margin: 25px 0px;
+    display: flex;
+    flex-direction: row;
+    height: 0px;
+    width: 100%;
+}
+
+.city-token {
+    margin: 10px;
+    display: flex;
+    background-size: cover;
+    background-position: center;
+    width: 125px;
+    height: 125px;
+    border-radius: 10%;
+}
+
+#token-overlay {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10%;
+}
+
+#token-overlay:hover {
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    background-color: aliceblue;
+}
+
+
