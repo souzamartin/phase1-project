@@ -1,15 +1,93 @@
 // https://api.teleport.org/api/urban_areas
 // Endpoints for available cities.
 
-// fetch("https://api.teleport.org/api/urban_areas/slug:san-francisco-bay-area/scores/")
-// .then(r => r.json())
-// .then(data => {
-//   console.log(data)
-// })
-// console.log("This worked.")
+const searchForm = document.querySelector('#city-search-form')
 
 const citiesContainer = document.querySelector('#cities-container')
 const randomizerButton = document.querySelector('#randomize')
+
+searchForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  citiesContainer.innerHTML = ''
+  const cityCard = document.createElement('div')
+
+  const cityName = document.createElement('h3')
+  const cityScore = document.createElement('span')
+  const cumulativeMeter = document.createElement('meter')
+
+  const cityImageContainer = document.createElement('div')
+  const cityImage = document.createElement('img')
+  const cityDescription = document.createElement('span')
+  cityImageContainer.id = 'city-image-container'
+  cityImage.id = 'city-image'
+  cityImageContainer.append(cityDescription, cityImage)
+
+  const scoreList = document.createElement('ul')
+
+  cityCard.append(cityName, cityScore, cumulativeMeter, cityImageContainer, scoreList)
+
+
+  citiesContainer.append(cityCard)
+
+  let searchString = e.target['city-search'].value.split(" ").join("-").toLowerCase()
+  fetch(`https://api.teleport.org/api/urban_areas/slug:${searchString}/`)
+    .then(r => r.json())
+    .then(data => {
+      cityName.textContent = data.name
+    })
+  
+  fetch(`https://api.teleport.org/api/urban_areas/slug:${searchString}/scores`)
+    .then((r) => r.json())
+    .then((scoresData) => {
+      cityScore.textContent = Math.floor(scoresData.teleport_city_score)
+        cumulativeMeter.id = cumulativeMeter
+        cumulativeMeter.min = 0
+        cumulativeMeter.max = 100
+        cumulativeMeter.low = 40
+        cumulativeMeter.high = 60
+        cumulativeMeter.optimum =80
+        cumulativeMeter.value = Math.floor(scoresData.teleport_city_score)
+      scoresData.categories.forEach(category => {
+        const li = document.createElement('li')
+        li.textContent = `${category.name}: ${Math.floor(category.score_out_of_10)}`
+
+        const categoryMeters = document.createElement('meter')
+            categoryMeters.id = category.score_out_of_10
+            categoryMeters.min = 0
+            categoryMeters.max = 10
+            categoryMeters.low = 4
+            categoryMeters.high = 6
+            categoryMeters.optimum =8
+            categoryMeters.value = `${Math.floor(category.score_out_of_10)}`
+
+        scoreList.append(li, categoryMeters)
+
+        cityDescription.innerHTML = scoresData.summary
+        cityDescription.style.visibility = 'hidden'
+      })
+    })
+
+  fetch(`https://api.teleport.org/api/urban_areas/slug:${searchString}/images`)
+    .then((r) => r.json())
+    .then((imgData) => {
+      cityImage.src = imgData.photos[0].image.web
+      cityDescription.style.position = 'absolute'
+    })
+
+  cityImageContainer.addEventListener('mouseover', () => {
+    cityImage.style.opacity = '0.15'
+    cityDescription.style.visibility = 'visible'
+  })
+
+  cityImageContainer.addEventListener('mouseleave', () => {
+    cityImage.style.opacity = '1'
+    cityDescription.style.visibility = 'hidden'
+  })
+
+  searchForm.reset()
+})
+
 
 function getCity() {
   citiesContainer.innerHTML = ''
@@ -18,6 +96,7 @@ function getCity() {
 
   const cityName = document.createElement('h3')
   const cityScore = document.createElement('span')
+  const cumulativeMeter = document.createElement('meter')
 
   const cityImageContainer = document.createElement('div')
   const cityImage = document.createElement('img')
@@ -28,7 +107,7 @@ function getCity() {
 
   const scoreList = document.createElement('ul')
   
-  cityCard.append(cityName, cityScore, cityImageContainer, scoreList)
+  cityCard.append(cityName, cityScore, cumulativeMeter, cityImageContainer, scoreList)
 
 
   citiesContainer.append(cityCard)
@@ -47,10 +126,27 @@ function getCity() {
         .then((r) => r.json())
         .then((scoresData) => {
           cityScore.textContent = Math.floor(scoresData.teleport_city_score)
+            cumulativeMeter.id = cumulativeMeter
+            cumulativeMeter.min = 0
+            cumulativeMeter.max = 100
+            cumulativeMeter.low = 40
+            cumulativeMeter.high = 60
+            cumulativeMeter.optimum =80
+            cumulativeMeter.value = Math.floor(scoresData.teleport_city_score)
           scoresData.categories.forEach(category => {
             const li = document.createElement('li')
             li.textContent = `${category.name}: ${Math.floor(category.score_out_of_10)}`
-            scoreList.appendChild(li)
+
+            const categoryMeters = document.createElement('meter')
+              categoryMeters.id = category.score_out_of_10
+              categoryMeters.min = 0
+              categoryMeters.max = 10
+              categoryMeters.low = 4
+              categoryMeters.high = 6
+              categoryMeters.optimum =8
+              categoryMeters.value = `${Math.floor(category.score_out_of_10)}`
+
+            scoreList.append(li, categoryMeters)
 
             cityDescription.innerHTML = scoresData.summary
             cityDescription.style.visibility = 'hidden'
