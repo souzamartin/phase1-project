@@ -127,6 +127,7 @@ searchForm.addEventListener('submit', (e) => {
   })
 
   saveButton.addEventListener('click', () => {
+    console.log(tokenAdded)
     if (!tokenAdded) {
       saveButton.remove()
       cityTray.style.height = '150px'
@@ -246,7 +247,7 @@ searchForm.addEventListener('submit', (e) => {
           })
       })
     }
-    tokenAdded = true
+    tokenAdded = false
   })
 
   searchForm.reset()
