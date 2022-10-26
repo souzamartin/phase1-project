@@ -185,6 +185,16 @@ searchForm.addEventListener('submit', (e) => {
 
         citiesContainer.append(cityCard)
 
+        cityImageContainer.addEventListener('mouseover', () => {
+          cityImage.style.opacity = '0.15'
+          cityDescription.style.visibility = 'visible'
+        })
+      
+        cityImageContainer.addEventListener('mouseleave', () => {
+          cityImage.style.opacity = '1'
+          cityDescription.style.visibility = 'hidden'
+        })
+
         fetch(`${cityToken.id}`)
           .then((r) => r.json())
           .then((tokenCity) => {
@@ -384,6 +394,16 @@ function getCity() {
         )
 
         citiesContainer.append(cityCard)
+
+        cityImageContainer.addEventListener('mouseover', () => {
+          cityImage.style.opacity = '0.15'
+          cityDescription.style.visibility = 'visible'
+        })
+      
+        cityImageContainer.addEventListener('mouseleave', () => {
+          cityImage.style.opacity = '1'
+          cityDescription.style.visibility = 'hidden'
+        })
 
         fetch(`${cityToken.id}`)
           .then((r) => r.json())

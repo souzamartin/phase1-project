@@ -1,8 +1,8 @@
-Nice Town You Got There!
+Nice City You Got There!
 Flatiron School EAST-SE-101022 Phase 1 Project
 By Khanya Keswa, Paige Tetzlaff, & Martin Souza
 
-Nice Town You Got There! is a single-page application for exploring information about cities all over the world. It fetches and renders data from the Teleport API, displaying a city's name, a characteristic image, and a brief description, along with Teleport's score data. These scores represent a city's performance on a variety of quality-of-life metrics. The Teleport total score combines these individual category scores into a single, overall value.
+Nice City You Got There! is a single-page application for exploring information about cities all over the world. It fetches and renders data from the Teleport API, displaying a city's name, a characteristic image, and a brief description, along with Teleport's score data. These scores represent a city's performance on a variety of quality-of-life metrics. The Teleport total score combines these individual category scores into a single, overall value.
 
 When the page loads, it displays information about a random city. The user can click the 'Random City' button to load a different city at random, or use the search form to find a city by name.
 
