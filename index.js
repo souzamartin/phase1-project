@@ -6,8 +6,11 @@ const searchForm = document.querySelector('#city-search-form')
 const topContainer = document.querySelector('#top-container')
 const citiesContainer = document.querySelector('#cities-container')
 const cityTray = document.querySelector('#city-tray')
+const tokenContainer = document.querySelector('#tray-array')
 const randomizerButton = document.querySelector('#randomize')
+const trayToggleButton = document.querySelector('#tray-toggle')
 
+let trayToggled = false
 let tokenAdded = false
 let cityLink = ''
 
@@ -15,15 +18,15 @@ let cityLink = ''
 // Function to fetch x3 and bundle data into city object
 
 // Function to render a city, called by:
-  // Render city on pageload
-  // Render city from search submit
-  // Render city from token click
+// Render city on pageload
+// Render city from search submit
+// Render city from token click
 
 // Function to create token from currently displayed city
 
 searchForm.addEventListener('submit', (e) => {
   e.preventDefault()
-  if (document.querySelector('#save-button')){
+  if (document.querySelector('#save-button')) {
     const oldSaveButton = document.querySelector('#save-button')
     oldSaveButton.remove()
   }
@@ -135,7 +138,8 @@ searchForm.addEventListener('submit', (e) => {
       tokenOverlay.textContent = cityName.textContent
       cityToken.appendChild(tokenOverlay)
       cityToken.style.backgroundImage = `url(${cityImage.src})`
-      cityTray.append(cityToken)
+      tokenContainer.append(cityToken)
+      trayToggleHandler()
 
       cityToken.addEventListener('click', () => {
         // if (cityTray.childElementCount <= 1) {
@@ -336,7 +340,8 @@ function getCity() {
       tokenOverlay.textContent = cityName.textContent
       cityToken.appendChild(tokenOverlay)
       cityToken.style.backgroundImage = `url(${cityImage.src})`
-      cityTray.append(cityToken)
+      tokenContainer.append(cityToken)
+      trayToggleHandler()
 
       cityToken.addEventListener('click', () => {
         // if (cityTray.childElementCount <= 1) {
@@ -454,3 +459,24 @@ randomizerButton.addEventListener('click', () => {
   getCity()
   tokenAdded = false
 })
+
+function trayToggleHandler() {
+  trayToggled = !trayToggled
+  if (trayToggled) {
+    trayToggleButton.textContent = 'Close Tray'
+    trayToggleButton.style.pointerEvents = 'all'
+    trayToggleButton.addEventListener('click', () => {
+      if (trayToggled) {
+        trayToggled = !trayToggled
+        cityTray.style.height = '35px'
+        trayToggleButton.textContent = 'Open Tray'
+        tokenContainer.style.opacity = 0
+      } else {
+        trayToggled = !trayToggled
+        cityTray.style.height = '150px'
+        trayToggleButton.textContent = 'Close Tray'
+        tokenContainer.style.opacity = 1
+      }
+    })
+  }
+}

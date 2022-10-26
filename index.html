@@ -13,16 +13,19 @@
   <body>
     <header class="container" id="top-container">
       <button id="randomize" class="header-button">Random City</button>
-      <h1>Nice Town You Got There!</h1>
+      <img id= logo src='New New Logo.png'>
       <!-- <button id='toggle-search'>Search Cities</button> -->
       <form id="city-search-form">
         <!-- <label for="city-search">Find a City:</label> -->
         <input id="city-search" placeholder="Find a City" />
-        <input type="submit" class = 'header-button' value="Search" />
+        <input type="submit" class = 'header-button' value="Search" id ='search-button'/>
       </form>  
     </header>
-    <div class="container">
-      <div id="city-tray"></div>
+    <div id="tray-container" class="container">
+      <div id="city-tray">
+        <div id="tray-array"></div>
+      </div>
+      <div id="tray-toggle">No Cities Saved</div>
     </div>
     <div class="container" id="main-container">
       <div id="cities-container"></div>
