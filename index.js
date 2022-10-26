@@ -38,6 +38,7 @@ searchForm.addEventListener('submit', (e) => {
   const cityName = document.createElement('h3')
   const saveButton = document.createElement('button')
   saveButton.id = 'save-button'
+  saveButton.className = 'header-button'
   saveButton.innerText = 'Save City'
   if (!document.getElementById('save-button')) {
     cityCard.appendChild(saveButton)
@@ -78,7 +79,7 @@ searchForm.addEventListener('submit', (e) => {
   fetch(`https://api.teleport.org/api/urban_areas/slug:${searchString}/scores`)
     .then((r) => r.json())
     .then((scoresData) => {
-      cityScore.textContent = Math.floor(scoresData.teleport_city_score)
+      cityScore.textContent = `Teleport Total Score: ${Math.floor(scoresData.teleport_city_score)}`
       cumulativeMeter.id = cumulativeMeter
       cumulativeMeter.min = 0
       cumulativeMeter.max = 100
@@ -146,7 +147,7 @@ searchForm.addEventListener('submit', (e) => {
         // }
 
         // cityToken.remove()
-        console.log(tokenAdded)
+        // console.log(tokenAdded)
 
         citiesContainer.innerHTML = ''
         const cityCard = document.createElement('div')
@@ -156,6 +157,7 @@ searchForm.addEventListener('submit', (e) => {
         cityName.id = cityName
         const saveButton = document.createElement('button')
         saveButton.id = 'save-button'
+        saveButton.className = 'header-button'
         saveButton.innerText = 'Save City'
         if (!document.getElementById('save-button')) {
           cityCard.appendChild(saveButton)
@@ -191,9 +193,7 @@ searchForm.addEventListener('submit', (e) => {
             fetch(`${cityToken.id}scores`)
               .then((r) => r.json())
               .then((scoresData) => {
-                cityScore.textContent = Math.floor(
-                  scoresData.teleport_city_score
-                )
+                cityScore.textContent = `Teleport Total Score: ${Math.floor(scoresData.teleport_city_score)}`
                 cumulativeMeter.id = cumulativeMeter
                 cumulativeMeter.min = 0
                 cumulativeMeter.max = 100
@@ -252,6 +252,7 @@ function getCity() {
   cityName.id = 'city-name'
   const saveButton = document.createElement('button')
   saveButton.id = 'save-button'
+  saveButton.className = 'header-button'
   saveButton.innerText = 'Save City'
   cityCard.append(saveButton)
   const cityScore = document.createElement('span')
@@ -290,7 +291,7 @@ function getCity() {
       fetch(`${cityURL}scores`)
         .then((r) => r.json())
         .then((scoresData) => {
-          cityScore.textContent = Math.floor(scoresData.teleport_city_score)
+          cityScore.textContent = `Teleport Total Score: ${Math.floor(scoresData.teleport_city_score)}`
           cumulativeMeter.id = cumulativeMeter
           cumulativeMeter.min = 0
           cumulativeMeter.max = 100
@@ -356,6 +357,7 @@ function getCity() {
         cityName.id = cityName
         const saveButton = document.createElement('button')
         saveButton.id = 'save-button'
+        saveButton.className = 'header-button'
         saveButton.innerText = 'Save City'
         if (!document.getElementById('save-button')) {
           cityCard.appendChild(saveButton)
@@ -391,9 +393,7 @@ function getCity() {
             fetch(`${cityToken.id}scores`)
               .then((r) => r.json())
               .then((scoresData) => {
-                cityScore.textContent = Math.floor(
-                  scoresData.teleport_city_score
-                )
+                cityScore.textContent = `Teleport Total Score: ${Math.floor(scoresData.teleport_city_score)}`
                 cumulativeMeter.id = cumulativeMeter
                 cumulativeMeter.min = 0
                 cumulativeMeter.max = 100

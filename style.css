@@ -1,22 +1,36 @@
-#top-container {
-  display: flex;
+#top-container{
+  display:flex;
   flex-direction: row;
   justify-content: space-between;
-
 }
-#city-card {
+#city-card{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
 }
-#city-card h3 {
+
+#city-card h3{
   text-align: center;
 }
-#city-card span {
+
+#city-card span{
   text-align: center;
 }
-#city-card meter {
+
+#city-card meter{
   align-self: center;
+}
+
+#city-card button {
+  align-self: center;
+}
+
+#city-card ul {
+  align-self: center;
+  list-style-type: none;
+  column-count: 2;
+  column-gap: 100px;
 }
 
 #city-image-container {
@@ -31,9 +45,14 @@
   text-align: center;
 }
 
+#city-image-container span {
+  width: 60%;
+  text-align: left;
+}
+
 #city-image {
   min-width: 0;
-  width: 100%;
+  width: 70%;
   height: 300px;
 }
 
@@ -120,6 +139,7 @@
   height: 100%;
   background-color: aliceblue;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -128,6 +148,7 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
 .sphere {
   animation: spin 6.66s linear infinite;
   border: 5px solid #f3f4f5;
@@ -146,6 +167,7 @@ body {
   z-index: -5;
 }
 
+
 .sphere::before,
 .sphere::after {
   border: 5px solid #f3f4f5;
@@ -158,6 +180,7 @@ body {
   width: 100%;
   z-index: -5;
 }
+
 .sphere::before {
   transform: rotateY(-66.6deg);
 }
@@ -206,9 +229,8 @@ form{
     flex-direction: row;
     justify-content: flex-end;
     width: 35%;
-    
-
 }
+
 #city-search{
     outline: none;
     border-width: 0;
@@ -219,8 +241,7 @@ form{
     height: 50px;
     margin-right: 10px;
     text-align: center;
-    color: #AF40FF;
-    
+    color: #AF40FF;  
 }
 ::placeholder{
     color: #AF40FF 
