@@ -46,7 +46,7 @@ function fetchCities(endPoint) {
     })
 }
 
-function renderCity(cityObj) {
+function renderCity(endPoint) {
   citiesContainer.innerHTML = ''
   const cityCard = document.createElement('div')
 
@@ -78,6 +78,53 @@ function renderCity(cityObj) {
   )
 
   citiesContainer.append(cityCard)
+
+  fetch(endpoint)
+    .then((r) => r.json())
+    .then((data) => {
+      cityName.textContent = data.name
+      cityLink = endPoint
+    })
+
+  fetch(`${endPoint}scores`)
+    .then((r) => r.json())
+    .then((scoresData) => {
+      cityScore.textContent = Math.floor(scoresData.teleport_city_score)
+      cumulativeMeter.id = cumulativeMeter
+      cumulativeMeter.min = 0
+      cumulativeMeter.max = 100
+      cumulativeMeter.low = 40
+      cumulativeMeter.high = 60
+      cumulativeMeter.optimum = 80
+      cumulativeMeter.value = Math.floor(scoresData.teleport_city_score)
+      scoresData.categories.forEach((category) => {
+        const li = document.createElement('li')
+        li.textContent = `${category.name}: ${Math.floor(
+          category.score_out_of_10
+        )}`
+
+        const categoryMeters = document.createElement('meter')
+        categoryMeters.id = category.score_out_of_10
+        categoryMeters.min = 0
+        categoryMeters.max = 10
+        categoryMeters.low = 4
+        categoryMeters.high = 6
+        categoryMeters.optimum = 8
+        categoryMeters.value = `${Math.floor(category.score_out_of_10)}`
+
+        scoreList.append(li, categoryMeters)
+
+        cityDescription.innerHTML = scoresData.summary
+        cityDescription.style.visibility = 'hidden'
+      })
+    })
+
+  fetch(`https://api.teleport.org/api/urban_areas/slug:${searchString}/images`)
+    .then((r) => r.json())
+    .then((imgData) => {
+      cityImage.src = imgData.photos[0].image.web
+      cityDescription.style.position = 'absolute'
+    })
 }
 
 searchForm.addEventListener('submit', (e) => {
