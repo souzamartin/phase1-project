@@ -23,19 +23,21 @@ let cityLink = ''
 
 searchForm.addEventListener('submit', (e) => {
   e.preventDefault()
-  
-  const oldSaveButton = document.querySelector('#save-button')
-  oldSaveButton.remove()
+  if (document.querySelector('#save-button')){
+    const oldSaveButton = document.querySelector('#save-button')
+    oldSaveButton.remove()
+  }
 
   citiesContainer.innerHTML = ''
   const cityCard = document.createElement('div')
+  cityCard.id = 'city-card'
 
   const cityName = document.createElement('h3')
   const saveButton = document.createElement('button')
   saveButton.id = 'save-button'
   saveButton.innerText = 'Save City'
   if (!document.getElementById('save-button')) {
-    topContainer.appendChild(saveButton)
+    cityCard.appendChild(saveButton)
   }
   const cityScore = document.createElement('span')
   const cumulativeMeter = document.createElement('meter')
@@ -152,7 +154,7 @@ searchForm.addEventListener('submit', (e) => {
         saveButton.id = 'save-button'
         saveButton.innerText = 'Save City'
         if (!document.getElementById('save-button')) {
-          topContainer.appendChild(saveButton)
+          cityCard.appendChild(saveButton)
         }
 
         const cityScore = document.createElement('span')
@@ -247,7 +249,7 @@ function getCity() {
   const saveButton = document.createElement('button')
   saveButton.id = 'save-button'
   saveButton.innerText = 'Save City'
-  topContainer.appendChild(saveButton)
+  cityCard.append(saveButton)
   const cityScore = document.createElement('span')
   const cumulativeMeter = document.createElement('meter')
 
@@ -351,7 +353,7 @@ function getCity() {
         saveButton.id = 'save-button'
         saveButton.innerText = 'Save City'
         if (!document.getElementById('save-button')) {
-          topContainer.appendChild(saveButton)
+          cityCard.appendChild(saveButton)
         }
 
         const cityScore = document.createElement('span')
