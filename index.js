@@ -452,33 +452,3 @@ randomizerButton.addEventListener('click', () => {
   getCity()
   tokenAdded = false
 })
-// function fetchCity(cityName) {
-//   const cityCard = document.createElement('div')
-
-//   fetch(`https://api.teleport.org/api/urban_areas/slug:${cityName}/`)
-//     .then((r) => r.json())
-//     .then((city) => {
-//       const cityName = document.createElement('h3')
-//       cityName.textContent = city.full_name
-//       cityCard.append(cityName)
-//     })
-//   fetch(`https://api.teleport.org/api/urban_areas/slug:${cityName}/scores/`)
-//     .then((r) => r.json())
-//     .then((scoresData) => {
-//       const cityScore = document.createElement('span')
-//       cityScore.textContent = scoresData.teleport_city_score
-//       cityCard.append(cityScore)
-//     })
-//   fetch(`https://api.teleport.org/api/urban_areas/slug:${cityName}/images/`)
-//     .then((r) => r.json())
-//     .then((imgData) => {
-//       const cityImage = document.createElement('img')
-//       cityImage.src = imgData.photos[0].image.web
-//       cityCard.append(cityImage)
-//     })
-
-//   citiesContainer.append(cityCard)
-//   //  console.log(cityData)
-// }
-
-// fetchCity('san-francisco-bay-area')

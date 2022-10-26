@@ -1,3 +1,12 @@
+#top-container{
+    display:flex;
+    flex-direction: row;
+
+}
+
+
+
+
 #city-image-container {
     display: flex;
     align-items: center;
@@ -21,7 +30,7 @@
     display: flex;
     flex-direction: row;
     height: 0px;
-    width: 100%;
+    width: 105%;
 }
 
 .city-token {
