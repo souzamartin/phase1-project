@@ -87,6 +87,7 @@ searchForm.addEventListener('submit', (e) => {
       cumulativeMeter.high = 60
       cumulativeMeter.optimum = 80
       cumulativeMeter.value = Math.floor(scoresData.teleport_city_score)
+
       scoresData.categories.forEach((category) => {
         const li = document.createElement('li')
         li.textContent = `${category.name}: ${Math.floor(
@@ -102,7 +103,10 @@ searchForm.addEventListener('submit', (e) => {
         categoryMeters.optimum = 8
         categoryMeters.value = `${Math.floor(category.score_out_of_10)}`
 
-        scoreList.append(li, categoryMeters)
+        const lineBreak = document.createElement('br')
+        li.append(lineBreak, categoryMeters)
+        
+        scoreList.append(li)
 
         cityDescription.innerHTML = scoresData.summary
         cityDescription.style.visibility = 'hidden'
@@ -127,7 +131,6 @@ searchForm.addEventListener('submit', (e) => {
   })
 
   saveButton.addEventListener('click', () => {
-    console.log(tokenAdded)
     if (!tokenAdded) {
       saveButton.remove()
       cityTray.style.height = '150px'
@@ -231,7 +234,10 @@ searchForm.addEventListener('submit', (e) => {
                     category.score_out_of_10
                   )}`
 
-                  scoreList.append(li, categoryMeters)
+                  const lineBreak = document.createElement('br')
+                  li.append(lineBreak, categoryMeters)
+                  
+                  scoreList.append(li)
 
                   cityDescription.innerHTML = scoresData.summary
                   cityDescription.style.visibility = 'hidden'
@@ -325,7 +331,10 @@ function getCity() {
             categoryMeters.optimum = 8
             categoryMeters.value = `${Math.floor(category.score_out_of_10)}`
 
-            scoreList.append(li, categoryMeters)
+            const lineBreak = document.createElement('br')
+            li.append(lineBreak, categoryMeters)
+
+            scoreList.append(li)
 
             cityDescription.innerHTML = scoresData.summary
             cityDescription.style.visibility = 'hidden'
@@ -441,7 +450,10 @@ function getCity() {
                     category.score_out_of_10
                   )}`
 
-                  scoreList.append(li, categoryMeters)
+                  const lineBreak = document.createElement('br')
+                  li.append(lineBreak, categoryMeters)
+                
+                  scoreList.append(li)
 
                   cityDescription.innerHTML = scoresData.summary
                   cityDescription.style.visibility = 'hidden'

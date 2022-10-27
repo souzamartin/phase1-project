@@ -35,6 +35,10 @@
   column-gap: 100px;
 }
 
+/* #city-card li {
+  width: 55%;
+} */
+
 #city-image-container {
   display: flex;
   align-items: center;
@@ -53,7 +57,7 @@
 }
 
 #city-image {
-  min-width: 0;
+  min-width: 1200px;
   width: 70%;
   height: 300px;
   transition: all 0.5s;
