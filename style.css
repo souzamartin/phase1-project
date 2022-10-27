@@ -76,7 +76,7 @@
   justify-content: flex-start;
   height: 35px;
   /* width: 105vw; */
-  box-shadow: inset 0px 5px 18px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0px 5px 18px 0px rgba(0, 0, 0, 0.15);
   transition: all 0.5s;
   overflow: hidden;
 }
@@ -90,21 +90,23 @@
 }
 
 #tray-toggle {
+    text-align: center;
   pointer-events: none;
   color: #a0a0a0;
   font-size: 14px;
-  width: fit-content;
+  width: 10%;
   align-self: center;
-  padding: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   cursor: pointer;
   border-radius: 0 0 10px 10px;
   transition: all 0.5s;
 }
 
 #tray-toggle:hover {
-  background-color: #5b42f3;
-  color: #ffffff;
-  box-shadow: 0px 5px 18px rgba(0, 0, 0, 0.15);
+  /* background-color: #5b42f3; */
+  color: #af40ff;
+  box-shadow: rgba(151, 65, 252, 0.5) 0px 10px 25px -5px;
 }
 
 .city-token {
@@ -137,7 +139,7 @@
 }
 
 #token-overlay:hover {
-  opacity: 1;
+  opacity: .85;
   width: 100%;
   height: 100%;
   background-color: aliceblue;
@@ -160,7 +162,7 @@ body {
   /* height: 66.6vmin; */
   /* margin: 50% auto; */
   /* margin: 50 - (66.6 / 2) + vmin auto; */
-  position: absolute;
+  position: fixed;
   top: 0;
   /* left: 0; */
   transform-style: preserve-3d;
@@ -203,6 +205,7 @@ body {
 .header-button {
   align-items: center;
   background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  /* background: inherit; */
   border: 0;
   border-radius: 8px;
   box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
@@ -210,7 +213,7 @@ body {
   color: #ffffff;
   display: flex;
   font-family: montserrat, sans-serif;
-  font-size: 20px;
+  font-size: 14px;
   justify-content: center;
   line-height: 1em;
   width: 10%;
@@ -222,7 +225,15 @@ body {
   touch-action: manipulation;
   white-space: nowrap;
   cursor: pointer;
+  transition: all .25s;
+  z-index: 2;
 }
+
+.header-button:hover {
+    scale: 1.025;
+    box-shadow: rgba(151, 65, 252, 0.5) 0px 10px 25px -5px;
+}
+
 #randomize{
     margin-right: 25%;
     
@@ -236,16 +247,37 @@ form{
 
 #city-search{
     outline: none;
+    opacity: .5;
+    position: absolute;
     border-width: 0;
     border-style: hidden;
     border-radius: 8px;
     background: none;
-    box-shadow: inset 3px 3px 15px #00DDEB;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.25);
+    width: 20%;
     height: 50px;
     margin-right: 10px;
-    text-align: center;
+    padding: 0 0 0 15px;
     color: #AF40FF;  
+    transition: all .25s;
+    text-indent: 17.5px;
 }
+
+#city-search:focus {
+    opacity: 1;
+}
+
+#magnifying-glass {
+    pointer-events: none;
+    opacity: 1;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    padding-right: 20%;
+    padding-top: 17.5px;
+    fill: #AF40FF;
+}
+
 ::placeholder{
     color: #AF40FF 
 }

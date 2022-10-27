@@ -4,22 +4,46 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nice Town You Got There!</title>
+    <title>Nice City You Got There!</title>
 
     <link rel="stylesheet" href="style.css" />
     <script defer src="index.js"></script>
-    <link rel="stylesheet" href="https://use.typekit.net/vws2prr.css">
+    <link rel="stylesheet" href="https://use.typekit.net/vws2prr.css" />
   </head>
   <body>
     <header class="container" id="top-container">
       <button id="randomize" class="header-button">Random City</button>
-      <img id= logo src='New New Logo.png'>
+      <img id="logo" src="New New Logo.png" />
       <!-- <button id='toggle-search'>Search Cities</button> -->
       <form id="city-search-form">
         <!-- <label for="city-search">Find a City:</label> -->
         <input id="city-search" placeholder="Find a City" />
-        <input type="submit" class = 'header-button' value="Search" id ='search-button'/>
-      </form>  
+        <svg
+          version="1.1"
+          id="magnifying-glass"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 490.4 490.4"
+          style="enable-background: new 0 0 490.4 490.4"
+          xml:space="preserve"
+        >
+          <g>
+            <path
+              d="M484.1,454.796l-110.5-110.6c29.8-36.3,47.6-82.8,47.6-133.4c0-116.3-94.3-210.6-210.6-210.6S0,94.496,0,210.796
+		s94.3,210.6,210.6,210.6c50.8,0,97.4-18,133.8-48l110.5,110.5c12.9,11.8,25,4.2,29.2,0C492.5,475.596,492.5,463.096,484.1,454.796z
+		 M41.1,210.796c0-93.6,75.9-169.5,169.5-169.5s169.6,75.9,169.6,169.5s-75.9,169.5-169.5,169.5S41.1,304.396,41.1,210.796z"
+            />
+          </g>
+        </svg>
+        <input
+          type="submit"
+          class="header-button"
+          value="Search"
+          id="search-button"
+        />
+      </form>
     </header>
     <div id="tray-container" class="container">
       <div id="city-tray">
